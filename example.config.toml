@@ -1,0 +1,21 @@
+# dumi example configuration.
+# Copy this file to ~/.config/dumi/config.toml and fill in your values.
+
+[model]
+# Any OpenAI-compatible "chat completions" endpoint works:
+# OpenAI, Mistral, Groq, OpenRouter, a local Ollama (http://localhost:11434/v1), ...
+base_url = "https://api.openai.com/v1"
+api_key = "sk-..."
+model = "gpt-4o-mini"
+
+[agent]
+# What the assistant calls itself.
+# name = "dumi"
+# Where dumi keeps its files (memory, scheduled jobs). "~" is allowed.
+# data_dir = "~/.local/share/dumi"
+# How often the agent wakes up on its own to review its notes (cron expression).
+# heartbeat_cron = "*/30 * * * *"
+# Jami account hash of the owner. Once the Jami channel exists, dumi will
+# only answer messages from this account (REQUIRED for safety, since the
+# agent can run shell commands).
+# owner_jami_id = "0123456789abcdef0123456789abcdef01234567"

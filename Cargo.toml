@@ -1,0 +1,26 @@
+[package]
+name = "dumi"
+version = "0.1.0"
+edition = "2024"
+description = "A tiny, simple personal AI agent (learning project)"
+license = "MIT"
+
+[dependencies]
+# Error handling with nice "context chains" — very beginner friendly.
+anyhow = "1"
+# Dates and times (reminders, timestamps, local time for prompts).
+chrono = { version = "0.4", features = ["serde"] }
+# Parses cron expressions for recurring jobs.
+cron = "0.12"
+# HTTP client (talks to the model provider; the Jami REST API later, too).
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+# Turns Rust structs into JSON and back — the lingua franca of LLM APIs.
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# Async runtime: lets dumi chat, run commands and fire reminders at once.
+tokio = { version = "1", features = ["macros", "process", "rt-multi-thread", "sync", "time"] }
+# Reads the TOML config file.
+toml = "0.8"
+# Logging (what dumi did and why, when something goes wrong).
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

@@ -1,0 +1,4 @@
+# Everyone developing dumi uses the latest stable Rust toolchain.
+# (rustup reads this file and installs/uses the right version automatically.)
+[toolchain]
+channel = "stable"
