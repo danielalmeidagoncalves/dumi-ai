@@ -12,7 +12,8 @@ comments. The codebase doubles as a Rust course for its maintainer.
 - [x] Terminal chat with any OpenAI-compatible model (cloud or local)
 - [x] Tools: run shell commands, read/write files, long-term memory, reminders
 - [x] Scheduler: reminders and recurring jobs fire on time + heartbeat
-- [ ] Jami channel: chat with dumi over P2P Jami messages
+- [ ] Jami channel: chat with dumi over P2P Jami messages (research done —
+      see [docs/jami-api.md](docs/jami-api.md); next: the libjami shim)
 
 ## Quickstart
 
