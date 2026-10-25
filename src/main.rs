@@ -8,6 +8,7 @@
 //!   memory.rs    — long-term memory (memory.md)
 //!   jobs.rs      — scheduled jobs stored in jobs.json
 //!   timeparse.rs — "in 20m" / "tomorrow 09:00" / cron -> timestamps
+//!   scheduler.rs — fires reminders and the heartbeat in the background
 //!   channel/     — how humans talk to dumi (console today, Jami planned)
 
 mod agent;
@@ -16,6 +17,7 @@ mod config;
 mod jobs;
 mod llm;
 mod memory;
+mod scheduler;
 mod timeparse;
 mod tools;
 mod util;
@@ -39,7 +41,11 @@ async fn main() -> Result<()> {
     tracing::info!(data_dir = %cfg.agent.data_dir.display(), "starting dumi");
 
     // The agent is shared: the console channel talks to it, and the
-    // scheduler will fire reminders into it, too.
+    // scheduler fires reminders into it, too.
     let agent = Arc::new(Mutex::new(agent::Agent::new(&cfg)?));
-    channel::console::run(agent).await
+    let scheduler = scheduler::spawn(agent.clone(), cfg.clone());
+    let result = channel::console::run(agent).await;
+    // The console returned (user quit or EOF): stop the background scheduler.
+    scheduler.abort();
+    result
 }

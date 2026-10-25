@@ -11,7 +11,7 @@ comments. The codebase doubles as a Rust course for its maintainer.
 
 - [x] Terminal chat with any OpenAI-compatible model (cloud or local)
 - [x] Tools: run shell commands, read/write files, long-term memory, reminders
-- [ ] Scheduler: make stored reminders actually fire (+ heartbeat) — next up
+- [x] Scheduler: reminders and recurring jobs fire on time + heartbeat
 - [ ] Jami channel: chat with dumi over P2P Jami messages
 
 ## Quickstart
@@ -23,8 +23,11 @@ comments. The codebase doubles as a Rust course for its maintainer.
 4. Run: `cargo run --release`
 5. Try:
    - *"remember that I prefer plain text answers"*
-   - *"remind me in 1 minute to stretch"* (stored; firing lands with the scheduler)
+   - *"remind me in 1 minute to stretch"* — then wait: it fires right in the chat
    - *"run `uname -a` and explain it"*
+
+   Set `RUST_LOG=dumi=debug` while developing to see every tool call and
+   scheduler tick.
 
 ## Security warning
 
